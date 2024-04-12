@@ -1,12 +1,9 @@
 class Solution {
     fun validPalindrome(s: String): Boolean {
-        if (s.length == 1) return true
-
-        val chars = s.toCharArray()
         var i = 0
-        var j = chars.lastIndex
+        var j = s.lastIndex
         while (i < j) {
-            if (chars[i] == chars[j]) {
+            if (s[i] == s[j]) {
                 ++i
                 --j
             } else {
@@ -19,6 +16,18 @@ class Solution {
     }
 
     fun String.isPalindrome(): Boolean {
-        return this == this.reversed()
+        if (length == 1) return true
+        var i = 0
+        var j = this.lastIndex
+        while (i < j) {
+            if (this[i] == this[j]) {
+                ++i
+                --j
+            } else {
+                return false
+            }
+        }
+        return true
+
     }
 }
