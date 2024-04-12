@@ -4,8 +4,8 @@ class Solution {
         val stack = ArrayDeque<Char>()
         num.forEach {
             while (k > 0 && stack.isNotEmpty() && stack.last() > it) {
-                --k
                 stack.removeLast()
+                --k
             }
             stack.add(it)
         }
