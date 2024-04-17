@@ -10,8 +10,7 @@
  */
 class Solution {
     fun smallestFromLeaf(root: TreeNode?): String {
-        val currentString = ""
-        if (root == null) return currentString
+        if (root == null) return ""
 
         var smallest = Char.MAX_VALUE + ""
         val stack = ArrayDeque<Pair<TreeNode, String>>()
@@ -22,7 +21,6 @@ class Solution {
             val newString = next.toChar() + priorString
 
             if (next.isLeaf()) {
-                //System.out.println("Leaf: $newString, smallest=$smallest")
                 smallest = minOf(smallest, newString)
             }
 
