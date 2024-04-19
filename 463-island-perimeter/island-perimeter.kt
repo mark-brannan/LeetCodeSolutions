@@ -3,7 +3,6 @@ class Solution {
         
         val visited = mutableSetOf<Pair<Int, Int>>()
         fun dfs(x: Int, y: Int): Int {
-            System.out.print("dfs @ $x,$y...")
             when {
                 x < 0 || y < 0
                     || x > grid.lastIndex
