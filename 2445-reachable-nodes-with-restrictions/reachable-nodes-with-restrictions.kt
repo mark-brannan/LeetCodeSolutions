@@ -1,7 +1,3 @@
-// create a set for reachable and unreachable nodes
-// add the root to reachable, add restricted to unreachable
-// for each edge...
-// if 
 class Solution {
     fun reachableNodes(n: Int, edges: Array<IntArray>, restricted: IntArray): Int {
 
@@ -37,26 +33,3 @@ class Solution {
         return counter
     }
 }
-
-/*
-        val reachable = mutableSetOf<Int>()
-       val unreachable = mutableSetOf<Int>() //?
- 
-        for (edge in edges) {
-            val firstNode = edge[0]
-            val secondNode = edge[1]
-        }
-
-        val firstEdge = edges[0]
-        val queue = ArrayDeque<>()
-        val visited = mutableSetOf<>()
-
-        queue.enqueue()
-        while (queue.isNotEmpty()) {
-            val node = queue.dequeue()
-
-            // for adj edges
-        }
-        return visited.size
-    }
-}*/
