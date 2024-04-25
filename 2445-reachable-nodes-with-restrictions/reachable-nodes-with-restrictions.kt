@@ -12,7 +12,6 @@ class Solution {
         }
         //System.out.println("neighbors=$neighbors")
 
-        var counter = 0
         val queue = ArrayDeque<Int>()
         val visited = mutableSetOf<Int>()
 
@@ -20,7 +19,6 @@ class Solution {
         while (queue.isNotEmpty()) {
             val node = queue.removeFirst()
             visited.add(node)
-            ++counter
 
             for (e in neighbors.getValue(node)) {
                 when (e) {
@@ -30,6 +28,6 @@ class Solution {
                 }
             }
         }
-        return counter
+        return visited.size
     }
 }
