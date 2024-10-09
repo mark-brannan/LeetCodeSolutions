@@ -2,30 +2,17 @@ class Solution {
     fun candy(ratings: IntArray): Int {
         val candies = IntArray(ratings.size) { 1 }
 
-        fun childNeedsMoreAtIndex(i: Int): Boolean {
-            // has another child on left, and has a higher rating than them, but less candy
+        for (i in 0..ratings.lastIndex) {
+            // has a higher rating than child on left, but less candy
             if (i > 0 && ratings[i] > ratings[i-1] && candies[i] <= candies[i-1]) {
-                return true
+                candies[i] = candies[i-1] + 1
             }
-
-            // has another child on right, and has a higher rating than them, but less candy
-            if (i < ratings.lastIndex && ratings[i] > ratings[i+1] && candies[i] <= candies[i+1]) {
-                return true
-            }
-            return false
         }
 
-        var i = 0
-        var stillGivingCandy = true
-        while (stillGivingCandy) {
-            stillGivingCandy = false
-            for (i in 0..ratings.lastIndex) {
-                when {
-                    childNeedsMoreAtIndex(i) -> {
-                        ++candies[i]
-                        stillGivingCandy = true
-                    }
-                }
+        for (i in ratings.lastIndex downTo 0) {
+            // has a higher rating than child on right, but less candy
+            if (i < ratings.lastIndex && ratings[i] > ratings[i+1] && candies[i] <= candies[i+1]) {
+                candies[i] = candies[i+1] + 1
             }
         }
 
