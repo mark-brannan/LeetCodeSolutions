@@ -4,7 +4,7 @@ class Solution {
         val output = mutableListOf<String>()
         for ((i, word) in words.withIndex()) {
 
-            if (output.lastIndex < line) {
+            if (output.isEmpty()) {
                 output.add(word)
 
             } else if ((output[line] + " " + word).length <= maxWidth) {
