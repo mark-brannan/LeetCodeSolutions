@@ -1,7 +1,7 @@
 class Solution {
     fun isHappy(n: Int): Boolean {
         var next = n
-        val priorValues = mutableListOf(n)
+        val priorValues = mutableSetOf(n)
         while (true) {
             next = next.happyIteration()
             when (next) {
