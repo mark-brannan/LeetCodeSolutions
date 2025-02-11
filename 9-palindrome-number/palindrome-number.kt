@@ -1,10 +1,10 @@
 class Solution {
     fun isPalindrome(x: Int): Boolean {
-        val reverse = x.toString().reversed()
         return when {
+            x == 0 -> true
             x < 0 -> false
-            reverse.toDouble() > Int.MAX_VALUE -> false
-            else -> x == reverse.toInt()
+            x % 10 == 0 -> false
+            else -> x.toString().let { it == it.reversed() }
         }
     }
 }
