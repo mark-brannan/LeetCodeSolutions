@@ -1,13 +1,10 @@
 class Solution {
     fun isPalindrome(x: Int): Boolean {
+        val reverse = x.toString().reversed()
         return when {
             x < 0 -> false
-            x < 10 -> true // optimization for single digit ints
-            x > 1000000000 && x.toString().reversed().toDouble() > Int.MAX_VALUE -> false
-            else -> {
-                val xPrime = x.toString().reversed().toInt()
-                x == xPrime
-            }
+            reverse.toDouble() > Int.MAX_VALUE -> false
+            else -> x == reverse.toInt()
         }
     }
 }
