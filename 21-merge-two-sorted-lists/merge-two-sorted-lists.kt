@@ -32,20 +32,3 @@ fun Pair<ListNode?, ListNode?>.orderNodes(): Pair<ListNode?, ListNode?> {
      else -> second to first
     }
 }
-
-fun Pair<ListNode?, ListNode?>.niceString() = "(${first?.`val`}, ${second?.`val`})"
-
-fun ListNode?.niceString(): String {
-    val builder = StringBuilder()
-    builder.append("[")
-    var next = this
-    while (next != null) {
-        builder.append(next.`val`)
-        next = next.next
-        if (next != null) {
-            builder.append(",")
-        }
-    }
-    builder.append("]")
-    return builder.toString()
-}
