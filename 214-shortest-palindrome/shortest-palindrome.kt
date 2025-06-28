@@ -1,26 +1,34 @@
 class Solution {
+    // KMP algorithm
     fun shortestPalindrome(s: String): String {
+        val combinedString = s + "#" + s.reversed()
+        val prefixTable = buildPrefixTable(combinedString)
 
-        // naively, the worst case is the length + (length - 1)
-        // size 1 strings are trivially already a palindrome
-        val worstCasePrefixLength = maxOf(1, s.length - 1)
-        val prefix = CharArray(worstCasePrefixLength)
-        var i = 0
-        var j = s.lastIndex
+        val longestPrefixLength = prefixTable[combinedString.length - 1]
+        val suffix = s.substring(longestPrefixLength)
 
-        // start with the input string itself, consider prepending
-        // an empty prefix string.  Then, adding characters from
-        // the end of the string, one at a time, consider
-        // prepending each new set of prefix characters
+        return suffix.reversed() + s
+    }
+}
 
-        while (isPalindrome(i - 1, prefix, s) == false) {
-            prefix[i] = s[j]
-            ++i
-            --j
+fun buildPrefixTable(s: String): IntArray {
+    val prefixTable = IntArray(s.length) { 0 }
+    var length = 0
+    
+    for (i in 1..s.lastIndex) {
+        length = prefixTable[i-1]
+        while (length > 0 && s[i] != s[length]) {
+            length = prefixTable[length - 1]
         }
 
-        return prefix.concatToString(0, i) + s
+        if (s[i] == s[length]) {
+            ++length
+        }
+
+        prefixTable[i] = length
     }
+
+    return prefixTable
 }
 
 fun isPalindrome(i: Int, prefix: CharArray, s: String): Boolean {
