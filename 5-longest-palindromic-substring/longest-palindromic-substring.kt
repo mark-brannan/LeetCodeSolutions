@@ -1,3 +1,7 @@
+/**
+ * O(n^2) solution that uses expanding left/right indexes
+ * to pivot around all possible palindromic substrings;
+ */
 class Solution {
     fun longestPalindrome(s: String): String {
         var longest = s.substring(0,1)
