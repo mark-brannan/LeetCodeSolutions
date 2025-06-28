@@ -1,15 +1,24 @@
 class Solution {
     fun longestPalindrome(s: String): String {
-        var longest = s.substring(0, 1)
-        for (i in s.indices) {
-            for (j in i..s.length) {
-                val substring = s.substring(i, j)
-                //System.out.println("Checking $substring ($i, $j)...")
-                if (substring.length > longest.length && substring.isPalindrome()) {
-                    // System.out.println("new longest: $longest ($i, $j)")
-                    longest = substring
+        var longest = ""
+        var length = 0
+
+        fun check(left: Int, right: Int) {
+            var (l, r) = left to right
+            while (l >= 0 && r < s.length && s[l] == s[r]) {
+                val substring = s.substring(l, r + 1)
+                if (r - l + 1 > length) {
+                    length = r - l + 1
+                    longest = s.substring(l, r + 1)
                 }
+                --l
+                ++r
             }
+        }
+
+        for (i in s.indices) {
+            check(i, i)
+            check(i, i + 1)
         }
         return longest
     }
