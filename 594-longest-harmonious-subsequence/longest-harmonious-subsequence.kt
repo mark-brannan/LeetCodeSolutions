@@ -2,10 +2,9 @@ class Solution {
     fun findLHS(nums: IntArray): Int {
         var longest = 0
         val counts = nums.asList().groupingBy { it }.eachCount()
-        val set = nums.toSortedSet()
 
-        for (k in set) {
-            if (k + 1 in set) {
+        for (k in counts.keys) {
+            if (counts.containsKey(k + 1)) {
                 val length = counts.getValue(k) + counts.getValue(k+1)
                 longest = maxOf(longest, length)
             }
