@@ -1,9 +1,13 @@
 
 class KthLargest(k: Int, nums: IntArray) {
-    val minQueue = PriorityQueue<Int>(nums.sorted().takeLast(k))
+    val minQueue = PriorityQueue<Int>(k)
     init {
         while (minQueue.size < k) {
             minQueue.add(Int.MIN_VALUE)
+        }
+        
+        for (num in nums) {
+            add(num)
         }
     }
 
